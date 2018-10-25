@@ -5,5 +5,9 @@ class Api::V1::RecipesController < ApplicationController
     render json: @recipes
   end
 
+  private
 
+  def recipe_params
+    params.require(:recipe).permit(:recipe_name, :url, :multiplier, :conversion_unit, :user_id)
+  end
 end

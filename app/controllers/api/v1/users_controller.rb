@@ -1,4 +1,9 @@
 class Api::V1::UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create]
+
+  def profile
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+  end
 
   def index
     @users = User.all
@@ -7,8 +12,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-  def recipe_params
-    require :user, allow :user_name, :email, :password
+  def user_params
+    params.require(:user).permit(:user_name, :email, :password)
   end
-
 end

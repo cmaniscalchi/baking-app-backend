@@ -5,4 +5,9 @@ class Api::V1::IngredientsController < ApplicationController
     render json: @ingredients
   end
 
+  private
+
+  def ingredient_params
+    params.require(:ingredient).permit(:ingredient_name, :unit, :quantity, :recipe_id)
+  end
 end
