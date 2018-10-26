@@ -1,7 +1,7 @@
 class CreateRecipeIngredients < ActiveRecord::Migration[5.2]
   def change
     create_table :recipe_ingredients do |t|
-      t.string :recipe_ingredient_volume
+      t.float :recipe_ingredient_volume
       t.string :recipe_ingredient_unit
       t.float :recipe_ingredient_ounces
       t.float :recipe_ingredient_grams

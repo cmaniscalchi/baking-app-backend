@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_025628) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "ingredient_name"
-    t.string "ingredient_volume"
+    t.float "ingredient_volume"
     t.string "ingredient_unit"
     t.float "ingredient_ounces"
     t.float "ingredient_grams"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_025628) do
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.string "recipe_ingredient_volume"
+    t.float "recipe_ingredient_volume"
     t.string "recipe_ingredient_unit"
     t.float "recipe_ingredient_ounces"
     t.float "recipe_ingredient_grams"
