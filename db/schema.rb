@@ -10,19 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_223942) do
+ActiveRecord::Schema.define(version: 2018_10_26_025628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ingredients", force: :cascade do |t|
     t.string "ingredient_name"
-    t.string "unit"
-    t.float "quantity"
-    t.bigint "recipe_id"
+    t.string "ingredient_volume"
+    t.string "ingredient_unit"
+    t.float "ingredient_ounces"
+    t.float "ingredient_grams"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  end
+
+  create_table "recipe_ingredients", force: :cascade do |t|
+    t.string "recipe_ingredient_volume"
+    t.string "recipe_ingredient_unit"
+    t.float "recipe_ingredient_ounces"
+    t.float "recipe_ingredient_grams"
+    t.bigint "recipe_id"
+    t.bigint "ingredient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -40,11 +53,11 @@ ActiveRecord::Schema.define(version: 2018_10_24_223942) do
     t.string "user_name"
     t.string "email"
     t.string "password_digest"
-    t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "ingredients", "recipes"
+  add_foreign_key "recipe_ingredients", "ingredients"
+  add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "users"
 end
