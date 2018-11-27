@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_025628) do
+ActiveRecord::Schema.define(version: 2018_11_27_173829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2018_10_26_025628) do
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.float "recipe_ingredient_volume"
-    t.string "recipe_ingredient_unit"
+    t.text "recipe_ingredient_volume"
+    t.text "recipe_ingredient_unit"
     t.float "recipe_ingredient_ounces"
     t.float "recipe_ingredient_grams"
     t.bigint "recipe_id"
